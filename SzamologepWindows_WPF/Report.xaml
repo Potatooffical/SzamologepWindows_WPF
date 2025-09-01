@@ -1,0 +1,14 @@
+﻿<Window x:Class="SzamologepWindows_WPF.Report"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SzamologepWindows_WPF"
+        mc:Ignorable="d"
+        Title="Report" Height="100" Width="400" Icon="/download-removebg-preview.png" >
+    <StackPanel Orientation="Vertical" >
+    <TextBlock Text="In case of a bug or error, please send an email" Width="300"/>
+    <TextBox Text="e-mail" Width="300" x:Name="tbx_email" />
+    <Button x:Name="btn_leadgomb" Content="Send" Width="60" Click="btn_leadgomb_Click"/>
+    </StackPanel>
+</Window>

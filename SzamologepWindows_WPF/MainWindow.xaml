@@ -5,8 +5,8 @@
         Icon="/Windows_Calculator.ico"
         Background="#454647"
         MinHeight="400" MinWidth="300"
-        WindowStartupLocation="CenterScreen" FontSize="20" FontWeight="DemiBold">
-    <Grid Margin="15">
+        WindowStartupLocation="CenterScreen" FontSize="20" FontWeight="DemiBold" Margin="5">
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -14,7 +14,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
             <RowDefinition Height="1.3*" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -22,41 +24,354 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-
-        <Border Grid.ColumnSpan="4" Grid.Row="0" Grid.Column="0"
-                BorderBrush="#545556" BorderThickness="2"
+        <!--Menusor-->
+        <Menu Grid.Row="0" Grid.ColumnSpan="4" BorderThickness="1" >
+            <MenuItem Header="Help">
+                <MenuItem Header="Report Bug" Click="Bugreport_Click"/>
+                <MenuItem Header="About Program" Click="MenuItem_Click"/>
+                <MenuItem.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </MenuItem.Resources>
+            </MenuItem>
+            <Menu.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Menu.Resources>
+            
+        </Menu>
+        <!-- Kijelző -->
+        <Border Grid.ColumnSpan="4" Grid.Row="1" BorderBrush="#545556" BorderThickness="2"
                 CornerRadius="5" Background="White" Margin="0,0,0,10">
-
-            <TextBox x:Name="tb_szamolo" IsReadOnly="True" FontSize="25" HorizontalAlignment="Stretch" Margin="10"/>
+            <TextBox x:Name="tb_szamolo"
+                     FontSize="25"
+                     Margin="5"
+                     IsReadOnly="True"
+                     PreviewTextInput="tb_szamolo_PreviewTextInput"
+                     Padding="0 10 0 0"
+                    >
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
         </Border>
-
-        <!--1.sor-->
-        <Button x:Name="btn_1" Grid.Row="1" Grid.Column="0" Content="1" Click="Gomb_Click"/>
-        <Button x:Name="btn_2" Grid.Row="1" Grid.Column="1" Content="2" Click="Gomb_Click"/>
-        <Button x:Name="btn_3" Grid.Row="1" Grid.Column="2" Content="3" Click="Gomb_Click"/>
-        <Button x:Name="btn_Osszeadas" Grid.Row="1" Grid.Column="4" Content="+" Click="Gomb_Click"/>
-
-        <!--2.sor-->
-        <Button x:Name="btn_4" Grid.Row="2" Grid.Column="0" Content="4" Click="Gomb_Click"/>
-        <Button x:Name="btn_5" Grid.Row="2" Grid.Column="1" Content="5" Click="Gomb_Click"/>
-        <Button x:Name="btn_6" Grid.Row="2" Grid.Column="2" Content="6" Click="Gomb_Click"/>
-        <Button x:Name="btn_Kivonas" Grid.Row="2" Grid.Column="4" Content="-" Click="Gomb_Click"/>
-
-        <!--3.sor-->
-        <Button x:Name="btn_7" Grid.Row="3" Grid.Column="0" Content="7" Click="Gomb_Click"/>
-        <Button x:Name="btn_8" Grid.Row="3" Grid.Column="1" Content="8" Click="Gomb_Click"/>
-        <Button x:Name="btn_9" Grid.Row="3" Grid.Column="2" Content="9" Click="Gomb_Click"/>
-        <Button x:Name="btn_Szorzas" Grid.Row="3" Grid.Column="4" Content="*" Click="Gomb_Click"/>
         
-        <!--4.sor-->
-        <Button x:Name="btn_Clear" Grid.Row="4" Grid.Column="0" Content="Clear" Click="Btn_Clear_Click"/>
-        <Button x:Name="btn_0" Grid.Row="4" Grid.Column="1" Content="0" Click="Gomb_Click"/>
-        <Button x:Name="btn_Egyenloseg" Grid.Row="4" Grid.Column="3" Content="=" Grid.RowSpan="2" Click="Btn_Egyenloseg_Click"/>
 
-        <!--5.sor-->
-        <Button x:Name="btn_Osztas" Grid.Row="5" Grid.Column="0" Content="/" Click="Gomb_Click"/>
-        <Button x:Name="btn_Hatvanyzoz" Grid.Row="4" Grid.Column="2" Content="^" Click="Gomb_Click"/>
-        <Button x:Name="btn_Faktorialis" Grid.Row="5" Grid.Column="2" Content="n!" Click="Gomb_Click"/>
-        <Button x:Name="btn_Gyokkivon" Grid.Row="5" Grid.Column="1" Content="√" Click="Gomb_Click"/>
+        <!-- 1. sor -->
+        <Button Grid.Row="2" Grid.Column="0" Content="1" Click="Gomb_Click" Margin="0.5">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="1" Content="2" Click="Gomb_Click" Margin="0.5">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="2" Content="3" Click="Gomb_Click" Margin="0.5">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="3" Content="+" Click="Gomb_Click" Margin="0.5">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        <!-- 2. sor -->
+        <Button Grid.Row="3" Grid.Column="0" Content="4" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="1" Content="5" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="2" Content="6" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="3" Content="-" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        <!-- 3. sor -->
+        <Button Grid.Row="4" Grid.Column="0" Content="7" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="1" Content="8" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="2" Content="9" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="3" Content="*" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        <!-- 4. sor -->
+        <Button Grid.Row="5" Grid.Column="0" Content="Clear" Click="Btn_Clear_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="5" Grid.Column="1" Content="0" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="5" Grid.Column="2" Content="del" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="5" Grid.Column="3" Content="^" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        <!-- 5. sor -->
+        <Button Grid.Row="6" Grid.Column="0" Content="%" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="6" Grid.Column="1" Content="pi" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="6" Grid.Column="2" Content="n!" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="6" Grid.Column="3" Content="=" Click="Btn_Egyenloseg_Click" Grid.RowSpan="2">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        <!-- 6. sor -->
+        <Button Grid.Row="7" Grid.Column="0" Content="," 
+           Click="Vesszo_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="1" Content="/" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button Grid.Row="7" Grid.Column="2" Content="√" Click="Gomb_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Gray"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+      
     </Grid>
 </Window>

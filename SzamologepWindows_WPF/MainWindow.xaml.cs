@@ -1,7 +1,7 @@
-﻿using System.Globalization;
-using System.Windows.Controls;
+﻿using System;
+using System.IO;
 using System.Windows;
-using System;
+using System.Windows.Controls;
 
 namespace SzamologepWindows_WPF
 {
@@ -41,55 +41,72 @@ namespace SzamologepWindows_WPF
 
         private void Btn_Egyenloseg_Click(object sender, RoutedEventArgs e)
         {
-
+            try
             {
-                try
+                if (muvelet == "pi")
                 {
-                    if (muvelet == "n!")
-                    {
-                        Faktorialis(elsoSzam);
-                    }
-                    else if (muvelet == "√")
-                    {
-                        Gyokvonas(elsoSzam);
-                    }
-                    else
-                    {
-                        if (!double.TryParse(tb_szamolo.Text, out double masodikSzam))
-                        {
-                            tb_szamolo.Text = "Hibás bemenet!";
-                            return;
-                        }
-
-                        switch (muvelet)
-                        {
-                            case "+":
-                                Osszeadas(elsoSzam, masodikSzam);
-                                break;
-                            case "-":
-                                Kivonas(elsoSzam, masodikSzam);
-                                break;
-                            case "*":
-                                Szorzas(elsoSzam, masodikSzam);
-                                break;
-                            case "/":
-                                Osztas(elsoSzam, masodikSzam);
-                                break;
-                            case "^":
-                                Hatvanyozas(elsoSzam, masodikSzam);
-                                break;
-                            default:
-                                tb_szamolo.Text = "Ismeretlen művelet.";
-                                break;
-                        }
-                    }
+                    Piszamitas(elsoSzam);
                 }
-                catch
+                else if (muvelet == "n!")
                 {
-                    tb_szamolo.Text = "Hibás bemenet!";
+                    Faktorialis(elsoSzam);
+                }
+                else if (muvelet == "√")
+                {
+                    Gyokvonas(elsoSzam);
+                }
+                else
+                {
+                    if (!double.TryParse(tb_szamolo.Text, out double masodikSzam))
+                    {
+                        tb_szamolo.Text = "Hibás bemenet!";
+                        return;
+                    }
+
+                    switch (muvelet)
+                    {
+                        case "+":
+                            Osszeadas(elsoSzam, masodikSzam);
+                            break;
+                        case "-":
+                            Kivonas(elsoSzam, masodikSzam);
+                            break;
+                        case "*":
+                            Szorzas(elsoSzam, masodikSzam);
+                            break;
+                        case "/":
+                            Osztas(elsoSzam, masodikSzam);
+                            break;
+                        case "^":
+                            Hatvanyozas(elsoSzam, masodikSzam);
+                            break;
+                        case "%":
+                            Szazalekszamitas(elsoSzam, masodikSzam);
+                            break;
+                        default:
+                            tb_szamolo.Text = "Ismeretlen művelet.";
+                            break;
+                    }
                 }
             }
+            catch
+            {
+                tb_szamolo.Text = "Hibás bemenet!";
+            }
         }
+
+        private void Piszamitas(double a)
+        {
+            double eredmeny = Math.PI * a;
+            tb_szamolo.Text = $"pi * {a} = {eredmeny}";
+        }
+
+        private void Szazalekszamitas(double a, double b)
+        {
+            double eredmeny = a * (b / 100);
+            tb_szamolo.Text = $"{b}% of {a} = {eredmeny}";
+        }
+
         private void Btn_Clear_Click(object sender, RoutedEventArgs e)
         {
             tb_szamolo.Text = "";
@@ -105,14 +122,14 @@ namespace SzamologepWindows_WPF
                 return;
             }
 
-            double eredmeny1 = 1;
-
+            double eredmeny = 1;
             for (int i = 1; i <= (int)a; i++)
             {
-                eredmeny1 *= i;
+                eredmeny *= i;
             }
 
-            tb_szamolo.Text = $"{a}! = {eredmeny1}";
+            tb_szamolo.Text = $"{a}! = {eredmeny}";
+            
         }
 
         private void Gyokvonas(double a)
@@ -122,12 +139,16 @@ namespace SzamologepWindows_WPF
                 tb_szamolo.Text = "Nem lehet negatív szám gyöke.";
                 return;
             }
-            tb_szamolo.Text = $"√{a} = {Math.Round(Math.Sqrt(a), 4)}";
+            double eredmeny = Math.Round(Math.Sqrt(a), 4);
+            tb_szamolo.Text = $"√{a} = {eredmeny}";
+            
         }
 
         private void Hatvanyozas(double a, double b)
         {
-            tb_szamolo.Text = $"{a} ^ {b} = {Math.Round(Math.Pow(a, b), 4)}";
+            double eredmeny = Math.Round(Math.Pow(a, b), 4);
+            tb_szamolo.Text = $"{a} ^ {b} = {eredmeny}";
+            
         }
 
         private void Osztas(double a, double b)
@@ -135,26 +156,77 @@ namespace SzamologepWindows_WPF
             if (b == 0)
             {
                 tb_szamolo.Text = "Nullával nem lehet osztani.";
+                return;
             }
-            else
-            {
-                tb_szamolo.Text = $"{a} / {b} = {Math.Round(a / b, 4)}";
-            }
+            double eredmeny = Math.Round(a / b, 4);
+            tb_szamolo.Text = $"{a} / {b} = {eredmeny}";
+            
         }
 
         private void Szorzas(double a, double b)
         {
-            tb_szamolo.Text = $"{a} * {b} = {a * b}";
+            double eredmeny = a * b;
+            tb_szamolo.Text = $"{a} * {b} = {eredmeny}";
+            
         }
 
         private void Kivonas(double a, double b)
         {
-            tb_szamolo.Text = $"{a} - {b} = {a - b}";
+            double eredmeny = a - b;
+            tb_szamolo.Text = $"{a} - {b} = {eredmeny}";
+            
         }
 
         private void Osszeadas(double a, double b)
         {
-            tb_szamolo.Text = $"{a} + {b} = {a + b}";
+            double eredmeny = a + b;
+            tb_szamolo.Text = $"{a} + {b} = {eredmeny}";
+            
+        }
+
+        private void Vesszo_Click(object sender, RoutedEventArgs e)
+        {
+            if (!tb_szamolo.Text.Contains(","))
+            {
+                tb_szamolo.Text += ",";
+            }
+        }
+        private void tb_szamolo_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+
+            
+            if (e.Text == "," || e.Text == ".")
+            {
+                if (tb.Text.Contains(",") || tb.Text.Contains("."))
+                {
+                    e.Handled = true; 
+                }
+                else
+                {
+                    e.Handled = false;
+                }
+            }
+            else if (!char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+        private void Bugreport_Click(object sender, RoutedEventArgs e)
+        {
+            Report about = new Report();
+            about.Owner = this;
+            about.ShowDialog();
+        }
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            AboutProgram about = new AboutProgram();
+            about.Owner = this;
+            about.ShowDialog();
         }
     }
 }
