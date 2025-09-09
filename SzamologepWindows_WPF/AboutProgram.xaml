@@ -22,9 +22,9 @@
             <Label Content="Calculator©" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
         </StackPanel>
 
-        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Padding="10"  Text="This program is open source and written in C#. Feel free to learn from the code, but don’t copy it blindly that’s just lame.Bugs? Probably your fault. But if you insist, send them to:  Bugreport@fardmod.com (spoiler: I won’t check it).Wanna see the code? Here you go:NO LINK:( But remember no stealing
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Padding="10"  Text="This program is open source and written in C#. Feel free to learn from the code, but don’t copy it blindly that’s just lame.Bugs? Probably your fault. But if you insist, send them to:  Bugreport@fardmod.com (spoiler: I won’t check it and its not vaid e-mail).Wanna see the code? Here you go:https://github.com/Potatooffical/SzamologepWindows_WPF.git But remember no stealing
 " Margin="-1,1,1,49" Grid.RowSpan="2" Grid.Row="1"/>
         <Button Content="OK" Width="80" Height="30" Margin="90,10,0,10" Click="Ok_Click" HorizontalAlignment="Left" Grid.Row="2" Padding="5" Grid.Column="1"/>
-        <TextBlock Text="      Version:1.2v    BY:Hidin_in_basement.bt" Grid.Column="0" Grid.Row="2" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Text="    Version:1.2b   BY:Hidin_in_basement.bt" Grid.Column="0" Grid.Row="2" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="245"/>
     </Grid>
 </Window>
